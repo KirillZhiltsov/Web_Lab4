@@ -2,7 +2,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 /**
- * Класс для работы с вещественными числами
+ * Кла для работы с вещественными числами
  */
 public class RealNumber {
     /** Значение вещественного числа */
@@ -49,7 +49,7 @@ public class RealNumber {
 
     /**
      * Добавить число в очередь
-     * Создает новый объект RealNumber и добавляет его в статическую очередь
+     * Создае новый объект RealNumber и добавляет его в статическую очередь
      * @param number вещественное число
      */
     public static void addToQueue(double number) {
