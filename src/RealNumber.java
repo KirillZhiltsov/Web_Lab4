@@ -1,18 +1,20 @@
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.*;
+
 
 /**
- * Кла для работы с вещественными числами
+ * Класс для работы с вещественными числами
  */
-public class RealNumber {
+public class RealNumber implements Iterable<RealNumber>, Comparable<RealNumber>{
     /** Значение вещественного числа */
     private double value;
     /**
      * Вещественное число по счёту в очереди
      */
     private static int CountNumber = 0;
-    /** Статическая очередь как поле класса */
-    private static final Queue<RealNumber> queue = new LinkedList<>();
+    /**
+     * Очередь вещественных чисел
+     */
+    private static final Queue<RealNumber> numbers = new LinkedList<>();
 
     /**
      * Конструктор по умолчанию
@@ -20,7 +22,7 @@ public class RealNumber {
      */
     public RealNumber(){
         this.value = 0;
-        CountNumber++;
+        CountNumber = 0;
     }
 
     /**
@@ -49,25 +51,39 @@ public class RealNumber {
 
     /**
      * Добавить число в очередь
-     * Создае новый объект RealNumber и добавляет его в статическую очередь
+     * Создает новый объект RealNumber и добавляет его в статическую очередь
      * @param number вещественное число
      */
     public static void addToQueue(double number) {
-        queue.add(new RealNumber(number));
+        numbers.add(new RealNumber(number));
+    }
+
+    public static String printQueue(){
+        String result = "";
+        if(numbers.isEmpty()){
+            result = "Очередь пустая";
+        } else{
+            for(RealNumber num : numbers){
+                result += "->" + Double.toString(num.getValue());
+            }
+        }
+        return result;
     }
 
     /**
      * Получить очередь
      * @return очередь вещественных чисел
      */
-    public static Queue<RealNumber> getQueue() {
-        return queue;
+    public static Queue<RealNumber> getNumbers() {
+        return numbers;
     }
 
     /**
      * Cеттер countNumber
      */
-    public static void setCountNumber() { CountNumber++;}
+    public static void setCountNumber(int i) {
+        CountNumber += i;
+    }
 
     /**
      * Получить по счёту в очереди
@@ -82,7 +98,7 @@ public class RealNumber {
      * @return true если очередь пуста, false в противном случае
      */
     public static boolean isQueueEmpty() {
-        return queue.isEmpty();
+        return numbers.isEmpty();
     }
 
     /**
@@ -114,5 +130,15 @@ public class RealNumber {
     @Override
     public int hashCode() {
         return Double.hashCode(value);
+    }
+
+    @Override
+    public int compareTo(RealNumber o) {
+        return 0;
+    }
+
+    @Override
+    public Iterator<RealNumber> iterator() {
+        return null;
     }
 }

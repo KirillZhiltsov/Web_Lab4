@@ -27,7 +27,7 @@ public class UI {
 
             switch (input) {
                 case "1" -> create();
-                case "2" -> System.out.println("2");
+                case "2" -> System.out.println(RealNumber.printQueue());
                 case "3" -> System.out.println("3");
                 case "4" -> System.out.println("4");
                 case "5" -> System.out.println("5");
@@ -49,10 +49,11 @@ public class UI {
             System.out.println("Заполнение очереди....");
             int click = 0;
             while (true) {
-                RealNumber.setCountNumber();
+                RealNumber.setCountNumber(1);
                 System.out.print("Число " + RealNumber.getCountNumber() + ": ");
                 String number = in.nextLine();
                 if (number.isEmpty()) {
+                    RealNumber.setCountNumber(-1);
                     click++;
                     if ((click == 1) && (RealNumber.isQueueEmpty())) {
                         System.out.println("Очередь не может быть пустой");
@@ -64,7 +65,7 @@ public class UI {
                         break;
                     }
                 } else {
-                    RealNumber.addToQueue(QueueException.checkDouble(number));
+                    RealNumber.addToQueue(Checker.checkDouble(number));
                 }
             }
         } catch (Error error){

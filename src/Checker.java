@@ -2,9 +2,9 @@ import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class QueueException {
+public final class Checker {
 
-    private QueueException() {}
+    private Checker() {}
 
     // Константы сообщений об ошибках
     private static final String EMPTY_QUEUE_MAX = "Очередь пуста, невозможно найти максимальный элемент";
