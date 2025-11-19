@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 /**
  * Класс для работы с вещественными числами
  */
@@ -58,16 +57,26 @@ public class RealNumber implements Iterable<RealNumber>, Comparable<RealNumber>{
         numbers.add(new RealNumber(number));
     }
 
-    public static String printQueue(){
-        String result = "";
-        if(numbers.isEmpty()){
-            result = "Очередь пустая";
-        } else{
-            for(RealNumber num : numbers){
-                result += "->" + Double.toString(num.getValue());
+    /**
+     * Метод выводит очередь
+     * @return очередь в строке
+     */
+    public static String printQueue() {
+        StringBuilder result = new StringBuilder();
+
+        if (numbers.isEmpty()) {
+            result.append("Очередь пустая");
+        } else {
+            Iterator<RealNumber> iterator = numbers.iterator();
+            while (iterator.hasNext()) {
+                RealNumber num = iterator.next();
+                result.append(num.getValue());
+                if (iterator.hasNext()) {
+                    result.append(" -> ");
+                }
             }
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -137,8 +146,14 @@ public class RealNumber implements Iterable<RealNumber>, Comparable<RealNumber>{
         return 0;
     }
 
+    // В классе RealNumber меняем реализацию метода iterator()
     @Override
     public Iterator<RealNumber> iterator() {
-        return null;
+        return new QueueRealNumberIterator(numbers);
     }
+
+    public static Iterator<RealNumber> getIterator() {
+        return new QueueRealNumberIterator(numbers);
+    }
+
 }
