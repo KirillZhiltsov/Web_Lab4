@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Класс для работы с вещественными числами
  */
-public class RealNumber implements Iterable<RealNumber>, Comparable<RealNumber>{
+public class RealNumber implements Iterable<RealNumber>{
     /** Значение вещественного числа */
     private double value;
     /**
@@ -139,11 +139,6 @@ public class RealNumber implements Iterable<RealNumber>, Comparable<RealNumber>{
     @Override
     public int hashCode() {
         return Double.hashCode(value);
-    }
-
-    @Override
-    public int compareTo(RealNumber o) {
-        return 0;
     }
 
     // В классе RealNumber меняем реализацию метода iterator()
