@@ -28,4 +28,3 @@ public class QueueRealNumberIterator implements Iterator<RealNumber> {
     }
 
 }
-

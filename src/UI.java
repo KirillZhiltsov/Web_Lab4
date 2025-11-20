@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.Scanner;
 public class UI {
     /**
@@ -32,9 +33,10 @@ public class UI {
                 case "2" -> System.out.println(RealNumber.printQueue());
                 case "3" -> CyclicShift();
                 case "4" -> System.out.println(RealNumber.clear());
-                case "5" -> System.out.println("5");
+                case "5" -> System.out.println(createFile());
                 case "6" -> System.out.println("6");
                 case "7" -> System.out.println("7");
+                case "8" -> System.out.println("8");
                 case "0" -> {
                     System.out.println("Завершение");
                     return;
@@ -47,8 +49,8 @@ public class UI {
     /**
      * Метод записывает числа в очередь, пока два раза не введётся пустая строка
      */
-    private void create(){
-        try{
+    private void create() {
+        try {
             System.out.println("Заполнение очереди....");
             int click = 0;
             while (true) {
@@ -71,20 +73,20 @@ public class UI {
                     RealNumber.addToQueue(Checker.checkDouble(number));
                 }
             }
-        } catch (Error error){
+        } catch (Error error) {
             System.out.println("Ошибка: " + error.getMessage());
         }
     }
 
-    private void  CyclicShift(){
-        while (true){
+    private void CyclicShift() {
+        while (true) {
             System.out.println("=====Меню сдвига=====");
             System.out.println("1 -> Выполнить сдвиг вправо");
             System.out.println("2 -> Выполнить сдвиг влево");
             System.out.println("0 -> Выход в главное меню");
             String input = in.nextLine();
             System.out.println("------------------------------------");
-            switch (input){
+            switch (input) {
                 case "1" -> System.out.println(RealNumber.CyclicShiftRight());
                 case "2" -> System.out.println(RealNumber.CyclicShiftLeft());
                 case "0" -> {
@@ -92,7 +94,22 @@ public class UI {
                     return;
                 }
                 default -> System.out.println("Неверная команда. Повторите ввод.");
+            }
         }
+    }
+
+    private String createFile() {
+        while (true) {
+            try {
+                System.out.println("Создание файла");
+                System.out.print("Название файла:");
+                String input = in.nextLine();
+                return FileManager.createFile(Checker.checkNameFile(input));
+            } catch (IOException e) {
+                System.err.println("Ошибка при создании файла: " + e.getMessage());
+            } catch (Error error) {
+                System.out.println("Ошибка: " + error.getMessage());
+            }
         }
     }
 }

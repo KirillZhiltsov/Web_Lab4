@@ -1,21 +1,25 @@
-//import java.io.FileWriter;
-//import java.io.IOException;
-//
-///**
-// * Класс для работы с файлами (сохранение результатов)
-// */
-//public class FileManager {
-//
-//    /**
-//     * Сохраняет очередь из итератора в файл
-//     * @throws Exception если произошла ошибка при сохранении
-//     */
-//    public void saveQueueToFile(RealNumberIterator iterator, String filename) throws Exception {
-//        try (FileWriter writer = new FileWriter(filename)) {
-//            writer.write("Результат циклического сдвига очереди:\n");
-//            iterator.writeQueueToFile(writer);
-//        } catch (IOException e) {
-//            throw Checker.createFileSaveException(filename, e);
-//        }
-//    }
-//}
+import java.io.*;
+
+
+/**
+ * Класс работы с файлами
+ */
+public class FileManager {
+
+    /**
+     * Метод создаёт файл
+     * @param name Название файла
+     * @return Строка состояния
+     * @throws IOException ошибка при создании файла
+     */
+    public static String createFile(String name) throws IOException {
+        StringBuilder result = new StringBuilder();
+        File file = new File(name);
+        if(file.createNewFile()){
+            result.append("Файл <").append(name).append("> создан");
+        } else{
+            result.append("Файл c таким названеим уже существует");
+        }
+        return String.valueOf(result);
+    }
+}
