@@ -15,11 +15,10 @@ public class UI {
             System.out.println("Выберите команду:");
             System.out.println("1 -> Добавить в очередь числа");
             System.out.println("2 -> Вывести очередь");
-            System.out.println("3 -> Выполнить сдвиг");
-            System.out.println("4 -> Создать файл");
-            System.out.println("5 -> Сохранить очередь в файл");
-            System.out.println("6 -> Вывести содержимое файла");
-            System.out.println("7 -> Удалить файл");
+            System.out.println("3 -> Создать файл");
+            System.out.println("4 -> Сохранить очередь в файл");
+            System.out.println("5 -> Вывести содержимое файла");
+            System.out.println("6 -> Удалить файл");
             System.out.println("0 -> Завершить работу программы");
             System.out.print("Введите номер команды: ");
 
@@ -33,7 +32,6 @@ public class UI {
                 case "4" -> System.out.println("4");
                 case "5" -> System.out.println("5");
                 case "6" -> System.out.println("6");
-                case "7" -> System.out.println("7");
                 case "0" -> {
                     System.out.println("Завершение");
                     return;
