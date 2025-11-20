@@ -36,7 +36,7 @@ public class UI {
                 case "5" -> System.out.println(createFile());
                 case "6" -> System.out.println("6");
                 case "7" -> System.out.println("7");
-                case "8" -> System.out.println("8");
+                case "8" -> System.out.println(deleteFile());
                 case "0" -> {
                     System.out.println("Завершение");
                     return;
@@ -78,6 +78,9 @@ public class UI {
         }
     }
 
+    /**
+     * Метод запускает интерфес для выбора типа цикличсекого сдвига
+     */
     private void CyclicShift() {
         while (true) {
             System.out.println("=====Меню сдвига=====");
@@ -98,16 +101,37 @@ public class UI {
         }
     }
 
+    /**
+     * Метод запускает интерфейс для создания файла
+     * @return Строка состояния
+     */
     private String createFile() {
         while (true) {
             try {
-                System.out.println("Создание файла");
-                System.out.print("Название файла:");
+                System.out.println("--Создание файла--");
+                System.out.print("Название файла: ");
                 String input = in.nextLine();
                 return FileManager.createFile(Checker.checkNameFile(input));
             } catch (IOException e) {
                 System.err.println("Ошибка при создании файла: " + e.getMessage());
             } catch (Error error) {
+                System.out.println("Ошибка: " + error.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Метод запускает интерфейс для удаления файла
+     * @return Строка состояния
+     */
+    private String deleteFile() {
+        while (true) {
+            try {
+                System.out.println("--Удаление файла--");
+                System.out.print("Название файла: ");
+                String input = in.nextLine();
+                return FileManager.deleteFile(Checker.checkNameFile(input));
+            } catch (Error error){
                 System.out.println("Ошибка: " + error.getMessage());
             }
         }

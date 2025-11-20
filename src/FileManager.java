@@ -22,4 +22,21 @@ public class FileManager {
         }
         return String.valueOf(result);
     }
+
+    public static String deleteFile(String name){
+        StringBuilder result = new StringBuilder();
+
+        File file = new File(name);
+        if (!file.exists()) {
+            result.append("Файл не существует: ").append(name);
+    } else {
+            boolean deleted = file.delete();
+            if(deleted) {
+                result.append("Файл <").append(name).append("> успешно удалён");
+            } else {
+                result.append("Не удалось удалить файл");
+            }
+        }
+        return String.valueOf(result);
+}
 }
