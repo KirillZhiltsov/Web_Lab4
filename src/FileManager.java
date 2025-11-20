@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Queue;
 
 
 /**
@@ -23,6 +24,11 @@ public class FileManager {
         return String.valueOf(result);
     }
 
+    /**
+     * Метод удаляет файл
+     * @param name название файла
+     * @return Строка состояния
+     */
     public static String deleteFile(String name){
         StringBuilder result = new StringBuilder();
 
@@ -38,5 +44,6 @@ public class FileManager {
             }
         }
         return String.valueOf(result);
-}
+    }
+
 }
