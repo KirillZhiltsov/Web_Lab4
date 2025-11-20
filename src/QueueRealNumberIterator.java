@@ -6,6 +6,7 @@ public class QueueRealNumberIterator implements Iterator<RealNumber> {
 
     /**
      * Конструктор с параметрами
+     *
      * @param numbers Коллекция RealNumber
      */
     public QueueRealNumberIterator(Queue<RealNumber> numbers) {
@@ -25,4 +26,6 @@ public class QueueRealNumberIterator implements Iterator<RealNumber> {
         }
         return internalIterator.next();
     }
+
 }
+

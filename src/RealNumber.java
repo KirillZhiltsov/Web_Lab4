@@ -80,13 +80,76 @@ public class RealNumber implements Iterable<RealNumber>{
     }
 
     /**
-     * Получить очередь
-     * @return очередь вещественных чисел
+     * Функция находит максимальное число в очереди
+     * @return Максимальное число в очереди
      */
-    public static Queue<RealNumber> getNumbers() {
-        return numbers;
+    private static double getMax(){
+        double Max = Double.MIN_VALUE;
+        Iterator<RealNumber> iterator = numbers.iterator();
+        while (iterator.hasNext()){
+            RealNumber num = iterator.next();
+            if(num.value > Max){
+                Max = num.value;
+            }
+        }
+        return Max;
     }
 
+    /**
+     * Метод выполняет циклическийц сдвиг влево
+     * @return Строка о результате работы
+     */
+    public static String CyclicShiftLeft(){
+        StringBuilder result = new StringBuilder();
+        if(numbers.isEmpty()){
+            result.append("Сдвиг невозможен. Очередь пустая");
+        } else {
+            while(numbers.peek().value != getMax()){
+                numbers.add(numbers.poll());
+            }
+            result.append("Сдвиг влево завершён");
+        }
+        return String.valueOf(result);
+    }
+
+    /**
+     * Метод выполняет циклическийц сдвиг вправо
+     * @return Строка о результате работы
+     */
+    public static String CyclicShiftRight(){
+        StringBuilder result = new StringBuilder();
+        if(numbers.isEmpty()){
+            result.append("Сдвиг невозможен. Очередь пустая");
+        } else {
+            while (numbers.peek().value != getMax()){
+                Iterator<RealNumber> iterator = numbers.iterator();
+                ArrayList<RealNumber> temp =  new ArrayList<>();
+                while(iterator.hasNext()){
+                    RealNumber num = iterator.next();
+                    temp.add(num);
+                }
+                numbers.clear();
+                numbers.add(temp.get(temp.size()-1));
+                for(int i = 0; i < temp.size()-1; ++i){
+                    numbers.add(temp.get(i));
+                }
+            }
+            result.append("Сдвиг выполнен");
+        }
+        return String.valueOf(result);
+    }
+
+    /**
+     * Метод отчищает очередь
+     */
+    public static String clear(){
+        if(numbers.isEmpty()){
+            return "Очередь пустая";
+        } else{
+            numbers.clear();
+            return "Очередь отчищена";
+        }
+    }
     /**
      * Cеттер countNumber
      */
@@ -110,45 +173,10 @@ public class RealNumber implements Iterable<RealNumber>{
         return numbers.isEmpty();
     }
 
-    /**
-     * Строковое представление объекта
-     * @return строковое представление вещественного числа
-     */
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
-
-    /**
-     * Сравнение объектов на равенство
-     * @param obj объект для сравнения
-     * @return true если объекты равны, false в противном случае
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        RealNumber that = (RealNumber) obj;
-        return Double.compare(that.value, value) == 0;
-    }
-
-    /**
-     * Вычисление хэш-кода объекта
-     * @return хэш-код объекта
-     */
-    @Override
-    public int hashCode() {
-        return Double.hashCode(value);
-    }
 
     // В классе RealNumber меняем реализацию метода iterator()
     @Override
     public Iterator<RealNumber> iterator() {
         return new QueueRealNumberIterator(numbers);
     }
-
-    public static Iterator<RealNumber> getIterator() {
-        return new QueueRealNumberIterator(numbers);
-    }
-
 }

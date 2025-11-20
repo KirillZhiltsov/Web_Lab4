@@ -15,10 +15,12 @@ public class UI {
             System.out.println("Выберите команду:");
             System.out.println("1 -> Добавить в очередь числа");
             System.out.println("2 -> Вывести очередь");
-            System.out.println("3 -> Создать файл");
-            System.out.println("4 -> Сохранить очередь в файл");
-            System.out.println("5 -> Вывести содержимое файла");
-            System.out.println("6 -> Удалить файл");
+            System.out.println("3 -> Выполнить сдвиг");
+            System.out.println("4 -> Отчистить очередь");
+            System.out.println("5 -> Создать файл");
+            System.out.println("6 -> Сохранить очередь в файл");
+            System.out.println("7 -> Вывести содержимое файла");
+            System.out.println("8 -> Удалить файл");
             System.out.println("0 -> Завершить работу программы");
             System.out.print("Введите номер команды: ");
 
@@ -28,10 +30,11 @@ public class UI {
             switch (input) {
                 case "1" -> create();
                 case "2" -> System.out.println(RealNumber.printQueue());
-                case "3" -> System.out.println("3");
-                case "4" -> System.out.println("4");
+                case "3" -> CyclicShift();
+                case "4" -> System.out.println(RealNumber.clear());
                 case "5" -> System.out.println("5");
                 case "6" -> System.out.println("6");
+                case "7" -> System.out.println("7");
                 case "0" -> {
                     System.out.println("Завершение");
                     return;
@@ -70,6 +73,26 @@ public class UI {
             }
         } catch (Error error){
             System.out.println("Ошибка: " + error.getMessage());
+        }
+    }
+
+    private void  CyclicShift(){
+        while (true){
+            System.out.println("=====Меню сдвига=====");
+            System.out.println("1 -> Выполнить сдвиг вправо");
+            System.out.println("2 -> Выполнить сдвиг влево");
+            System.out.println("0 -> Выход в главное меню");
+            String input = in.nextLine();
+            System.out.println("------------------------------------");
+            switch (input){
+                case "1" -> System.out.println(RealNumber.CyclicShiftRight());
+                case "2" -> System.out.println(RealNumber.CyclicShiftLeft());
+                case "0" -> {
+                    System.out.println("Выход в главное меню...");
+                    return;
+                }
+                default -> System.out.println("Неверная команда. Повторите ввод.");
+        }
         }
     }
 }
