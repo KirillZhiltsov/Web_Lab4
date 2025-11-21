@@ -101,6 +101,7 @@ public class UI {
 
     /**
      * Метод запускает интерфейс для создания файла
+     *
      * @return Строка состояния
      */
     private String createFile() {
@@ -120,6 +121,7 @@ public class UI {
 
     /**
      * Метод запускает интерфейс для удаления файла
+     *
      * @return Строка состояния
      */
     private String deleteFile() {
@@ -129,7 +131,7 @@ public class UI {
                 System.out.print("Название файла: ");
                 String input = in.nextLine();
                 return FileManager.deleteFile(Checker.checkNameFile(input));
-            } catch (Error error){
+            } catch (Error error) {
                 System.out.println("Ошибка: " + error.getMessage());
             }
         }
@@ -139,15 +141,21 @@ public class UI {
      * Метод запускает интерфейс для сохранения очреди в файл
      * @return Строка состояния
      */
-    private String safeToFile(){
-        while (true){
-            try {
-                System.out.println("--Сохранение очереди в файл--");
-                System.out.print("Название файла: ");
-                String input = in.nextLine();
-                return FileManager.addToFile(RealNumber.printQueue(), Checker.checkNameFile(input));
-            } catch (IOException e){
-                System.err.println("Ошибка при сохранении в файл: " + e.getMessage());
+    private String safeToFile() {
+        while (true) {
+            if (!RealNumber.checkIsEmpty()) {
+                try {
+                    System.out.println("--Сохранение очереди в файл--");
+                    System.out.print("Название файла: ");
+                    String input = in.nextLine();
+                    return FileManager.addToFile(RealNumber.printQueue(), Checker.checkNameFile(input));
+                } catch (IOException e) {
+                    System.err.println("Ошибка при сохранении в файл: " + e.getMessage());
+                } catch (Error error){
+                    System.out.println("Ошибка: " + error.getMessage());
+                }
+            } else {
+                return "Очередь пустая";
             }
         }
     }

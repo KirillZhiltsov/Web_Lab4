@@ -24,6 +24,9 @@ public class RealNumber implements Iterable<RealNumber>{
         CountNumber = 0;
     }
 
+    public static boolean checkIsEmpty(){
+        return numbers.isEmpty();
+    }
     /**
      * Конструктор с параметрами
      * @param value Действительное число
