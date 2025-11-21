@@ -46,4 +46,32 @@ public class FileManager {
         return String.valueOf(result);
     }
 
+    /**
+     * Метод добавляет строку в файл
+     * @param info строка
+     * @param name название файла
+     * @return Строка состояния
+     * @throws IOException исключение сохранения
+     */
+    public static String addToFile(String info, String name) throws IOException {
+        StringBuilder result = new StringBuilder();
+        File file = new File(name);
+        if (!file.exists()) {
+            result.append("Файл не существует: ").append(name);
+    }   else if(!file.isFile()){
+            result.append(name).append(" не является файлом");
+        } else if(!file.canWrite()){
+            result.append("Запись в файл недоступна: ").append(name);
+        } else if(!file.canRead()){
+            result.append("Чтение из файла недоступно: ").append(name);
+        } else{
+            FileWriter writer = new FileWriter(file, true);
+            writer.write("\n"+ "=====Результат=====" + "\n");
+            writer.write(info + "\n");
+            writer.write("-------------------" + "\n");
+            writer.flush();
+            result.append("Запись завершена");
+        }
+    return String.valueOf(result);
+    }
 }

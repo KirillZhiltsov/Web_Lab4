@@ -20,8 +20,7 @@ public class UI {
             System.out.println("4 -> Отчистить очередь");
             System.out.println("5 -> Создать файл");
             System.out.println("6 -> Сохранить очередь в файл");
-            System.out.println("7 -> Вывести содержимое файла");
-            System.out.println("8 -> Удалить файл");
+            System.out.println("7 -> Удалить файл");
             System.out.println("0 -> Завершить работу программы");
             System.out.print("Введите номер команды: ");
 
@@ -34,9 +33,8 @@ public class UI {
                 case "3" -> CyclicShift();
                 case "4" -> System.out.println(RealNumber.clear());
                 case "5" -> System.out.println(createFile());
-                case "6" -> System.out.println("6");
-                case "7" -> System.out.println("7");
-                case "8" -> System.out.println(deleteFile());
+                case "6" -> System.out.println(safeToFile());
+                case "7" -> System.out.println(deleteFile());
                 case "0" -> {
                     System.out.println("Завершение");
                     return;
@@ -133,6 +131,23 @@ public class UI {
                 return FileManager.deleteFile(Checker.checkNameFile(input));
             } catch (Error error){
                 System.out.println("Ошибка: " + error.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Метод запускает интерфейс для сохранения очреди в файл
+     * @return Строка состояния
+     */
+    private String safeToFile(){
+        while (true){
+            try {
+                System.out.println("--Сохранение очереди в файл--");
+                System.out.print("Название файла: ");
+                String input = in.nextLine();
+                return FileManager.addToFile(RealNumber.printQueue(), Checker.checkNameFile(input));
+            } catch (IOException e){
+                System.err.println("Ошибка при сохранении в файл: " + e.getMessage());
             }
         }
     }
