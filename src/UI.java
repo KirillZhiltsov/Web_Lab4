@@ -58,7 +58,7 @@ public class UI {
                 if (number.isEmpty()) {
                     RealNumber.setCountNumber(-1);
                     click++;
-                    if ((click == 1) && (RealNumber.isQueueEmpty())) {
+                    if ((click == 1) && (RealNumber.checkIsEmpty())) {
                         System.out.println("Очередь не может быть пустой");
                         click = 0;
                         continue;

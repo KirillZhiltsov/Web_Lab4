@@ -17,7 +17,7 @@ public class FileManager {
         if(file.createNewFile()){
             result.append("Файл <").append(name).append("> создан");
         } else{
-            result.append("Файл c таким названеим уже существует");
+            result.append("Файл c таким названием уже существует");
         }
         return String.valueOf(result);
     }

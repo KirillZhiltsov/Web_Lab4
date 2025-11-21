@@ -169,15 +169,8 @@ public class RealNumber implements Iterable<RealNumber>{
     }
 
     /**
-     * Проверить пустая ли очередь
-     * @return true если очередь пуста, false в противном случае
-     */
-    public static boolean isQueueEmpty() {
-        return numbers.isEmpty();
-    }
-
-
-    // В классе RealNumber меняем реализацию метода iterator()
+     * В классе RealNumber меняем реализацию метода iterator()
+      */
     @Override
     public Iterator<RealNumber> iterator() {
         return new QueueRealNumberIterator(numbers);
