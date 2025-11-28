@@ -1,7 +1,7 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class Checker {
+public abstract class Checker {
 
     private Checker() {}
 

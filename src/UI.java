@@ -1,6 +1,7 @@
-
 import java.io.IOException;
+import java.util.Queue;
 import java.util.Scanner;
+
 public class UI {
     /**
      * Объект класса Scanner для чтения ввода из консоли
@@ -52,11 +53,9 @@ public class UI {
             System.out.println("Заполнение очереди....");
             int click = 0;
             while (true) {
-                RealNumber.setCountNumber(1);
-                System.out.print("Число " + RealNumber.getCountNumber() + ": ");
+                System.out.print("Число " + (RealNumber.getLength()+1) + ": ");
                 String number = in.nextLine();
                 if (number.isEmpty()) {
-                    RealNumber.setCountNumber(-1);
                     click++;
                     if ((click == 1) && (RealNumber.checkIsEmpty())) {
                         System.out.println("Очередь не может быть пустой");

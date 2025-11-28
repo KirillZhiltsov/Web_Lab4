@@ -3,13 +3,10 @@ import java.util.*;
 /**
  * Класс для работы с вещественными числами
  */
-public class RealNumber implements Iterable<RealNumber>{
+public class RealNumber {
     /** Значение вещественного числа */
     private double value;
-    /**
-     * Вещественное число по счёту в очереди
-     */
-    private static int CountNumber = 0;
+
     /**
      * Очередь вещественных чисел
      */
@@ -21,7 +18,6 @@ public class RealNumber implements Iterable<RealNumber>{
      */
     public RealNumber(){
         this.value = 0;
-        CountNumber = 0;
     }
 
     public static boolean checkIsEmpty(){
@@ -70,7 +66,7 @@ public class RealNumber implements Iterable<RealNumber>{
         if (numbers.isEmpty()) {
             result.append("Очередь пустая");
         } else {
-            Iterator<RealNumber> iterator = numbers.iterator();
+            Iterator<RealNumber> iterator = new QueueRealNumberIterator(numbers);
             while (iterator.hasNext()) {
                 RealNumber num = iterator.next();
                 result.append(num.getValue());
@@ -83,22 +79,6 @@ public class RealNumber implements Iterable<RealNumber>{
     }
 
     /**
-     * Функция находит максимальное число в очереди
-     * @return Максимальное число в очереди
-     */
-    private static double getMax(){
-        double Max = Double.MIN_VALUE;
-        Iterator<RealNumber> iterator = numbers.iterator();
-        while (iterator.hasNext()){
-            RealNumber num = iterator.next();
-            if(num.value > Max){
-                Max = num.value;
-            }
-        }
-        return Max;
-    }
-
-    /**
      * Метод выполняет циклическийц сдвиг влево
      * @return Строка о результате работы
      */
@@ -107,7 +87,7 @@ public class RealNumber implements Iterable<RealNumber>{
         if(numbers.isEmpty()){
             result.append("Сдвиг невозможен. Очередь пустая");
         } else {
-            while(numbers.peek().value != getMax()){
+            while(numbers.peek().value != QueueRealNumberIterator.maxElement(numbers).value){
                 numbers.add(numbers.poll());
             }
             result.append("Сдвиг влево завершён");
@@ -124,8 +104,8 @@ public class RealNumber implements Iterable<RealNumber>{
         if(numbers.isEmpty()){
             result.append("Сдвиг невозможен. Очередь пустая");
         } else {
-            while (numbers.peek().value != getMax()){
-                Iterator<RealNumber> iterator = numbers.iterator();
+            while (numbers.peek().value != QueueRealNumberIterator.maxElement(numbers).value){
+                Iterator<RealNumber> iterator = new QueueRealNumberIterator(numbers);
                 ArrayList<RealNumber> temp =  new ArrayList<>();
                 while(iterator.hasNext()){
                     RealNumber num = iterator.next();
@@ -153,26 +133,20 @@ public class RealNumber implements Iterable<RealNumber>{
             return "Очередь отчищена";
         }
     }
-    /**
-     * Cеттер countNumber
-     */
-    public static void setCountNumber(int i) {
-        CountNumber += i;
-    }
 
     /**
-     * Получить по счёту в очереди
-     * @return Вещественное число по счёту в очереди
+     * Метод возвращает длину очереди
+     * @return длина очереди
      */
-    public static int getCountNumber() {
-        return CountNumber;
+    public static int getLength(){
+        return QueueRealNumberIterator.getSize();
     }
 
+
     /**
-     * В классе RealNumber меняем реализацию метода iterator()
-      */
-    @Override
-    public Iterator<RealNumber> iterator() {
-        return new QueueRealNumberIterator(numbers);
+     * Метод выделяет память под итератор
+     */
+    public static void createIter(){
+        Iterator<RealNumber> iterator = new QueueRealNumberIterator(numbers);
     }
 }
